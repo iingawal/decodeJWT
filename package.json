@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "jwt-decode": "^4.0.0",
+    "prompt-sync": "^4.2.0"
+  }
+}

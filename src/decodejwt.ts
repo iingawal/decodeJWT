@@ -1,7 +1,5 @@
-import { jwtDecode } from "jwt-decode"; // Install with `npm install jwt-decode`
-
-//import express = require('express');
-import * as express from "express";
+const jwtDecode: any = require('jwt-decode'); // Install with `npm install jwt-decode`
+import express, { Request, Response } from "express";
 
 const app = express();
 
@@ -18,7 +16,7 @@ const PORT = process.env.PORT || 3000; // Use environment variable or default to
 const token = prompt("Please enter your token:")
 
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Hello RedHat!');
 });
 
@@ -47,12 +45,11 @@ function getToken(): string | null {
 
 // Example usage triggered by a button click
 document.getElementById("submitButton")?.addEventListener("click", () => {
-    const token1 = getToken();
-    if (token1 !== null && token1 !== "") {
-    const decoded = jwtDecode(token);
-
-        alert(`Decoded token : , ${decoded}!`);
-    } else {
-        alert("No token entered or prompt canceled.");
-    }
+  const token1 = getToken();
+  if (token1 !== null && token1 !== "") {
+    const decoded = jwtDecode(token1 as string);
+    alert(`Decoded token : , ${decoded}!`);
+  } else {
+    alert("No token entered or prompt canceled.");
+  }
 });

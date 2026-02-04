@@ -1,12 +1,14 @@
 {
-"scripts": {
-  "start": "ts-node decodejwt.ts",
-  "build": "tsc",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+  "scripts": {
+    "start": "ts-node src/decodejwt.ts",
+    "build": "tsc --outDir dist",
+    "start:prod": "node dist/decodejwt.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
   },
   "dependencies": {
     "express": "^5.2.1",

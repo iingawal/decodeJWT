@@ -1,55 +1,45 @@
 const jwtDecode: any = require('jwt-decode'); // Install with `npm install jwt-decode`
-import express, { Request, Response } from "express";
+import express from 'express';
+import path from 'path';
 
 const app = express();
+const port = 3000;
 
-const prompt = require('prompt-sync')();
+// Serve static files from the src directory
+app.use(express.static(path.join(__dirname, '..')));
 
-
-const PORT = process.env.PORT || 3000; // Use environment variable or default to port 3000
-
-//const prompt = require('prompt-sync')(); // Import and initialize
-//const token = prompt('Please enter your token: ');
-//console.log(token);
-
-
-const token = prompt("Please enter your token:")
-
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello RedHat!');
+// Serve the main HTML file
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is listening on http://localhost:${port}`);
 });
 
 
-// Define the user's name with a type annotation
-//const token: string = prompt("enter token")
-
-
-//const token: string = textInput.value
 
 
 
 
+// Client-side code that runs in the browser
+// This function will be available in the browser when this file is loaded
+declare const document: any;
 
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const tokenInput = document.getElementById('tokenInput') as HTMLInputElement;
+    const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const outputArea = document.getElementById('outputArea') as HTMLElement;
 
-
-function getToken(): string | null {
-    // The prompt method returns the input as a string or null if canceled
-    const token = prompt("Please enter your token:");
-    return token;
+    submitButton?.addEventListener('click', () => {
+      const token1: string = tokenInput.value;
+      if (token1 !== null && token1 !== '') {
+        const decoded = jwtDecode(token1 as string);
+        outputArea.textContent = JSON.stringify(decoded);
+      } else {
+        outputArea.textContent = 'No token entered';
+      }
+    });
+  });
 }
-
-// Example usage triggered by a button click
-document.getElementById("submitButton")?.addEventListener("click", () => {
-  const token1 = getToken();
-  if (token1 !== null && token1 !== "") {
-    const decoded = jwtDecode(token1 as string);
-    alert(`Decoded token : , ${decoded}!`);
-  } else {
-    alert("No token entered or prompt canceled.");
-  }
-});

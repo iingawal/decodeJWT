@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS/TS Input/Output App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Input/Output Example</h1>
+        <label for="tokenInput">Enter your token:</label>
+        <input type="text" id="tokenInput" placeholder="JWT Token">
+        <button id="submitButton">Decode token</button>
+        <p>Output: <strong id="outputArea"></strong></p>
+    </div>
+
+    <!-- Link the browser-only TypeScript entry (Parcel will compile it) -->
+    <script type="module" src="./client.ts"></script>
+</body>
+</html>

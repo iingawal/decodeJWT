@@ -1,18 +1,35 @@
 {
   "scripts": {
-    "start": "ts-node src/decodejwt.ts",
-    "build": "tsc --outDir dist",
-    "start:prod": "node dist/decodejwt.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "start:server": "ts-node src/server.ts",
+    "start:prod": "node dist/server.js",
+    "build:server": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "parcel": "^2.16.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.0"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "express": "^5.2.1",
     "jwt-decode": "^4.0.0",
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "name": "decodejwt",
+  "version": "1.0.0",
+  "description": "Small Node + TypeScript project to decode JWTs and run a minimal Express server.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iingawal/decodeJWT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iingawal/decodeJWT/issues"
+  },
+  "homepage": "https://github.com/iingawal/decodeJWT#readme"
 }
